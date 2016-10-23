@@ -19,7 +19,7 @@ public class Sequence {
         this.number_of_blanks=number_of_blanks;
     }
 
-    public String getHeader(){
+    public String getHead(){
         return seq_name;
     }
 

@@ -9,7 +9,7 @@ public class Nucleotide {
 
     public Nucleotide(char base){
         this.base=base;
-        
+
         //This turned out to be unnecessary, but it might
         //become useful in the future
         switch (base){
@@ -29,5 +29,10 @@ public class Nucleotide {
 
     public char getBase(){
         return base;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(base);
     }
 }

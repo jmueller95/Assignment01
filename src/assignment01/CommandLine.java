@@ -3,7 +3,6 @@ package assignment01;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -14,10 +13,34 @@ public class CommandLine {
     public static void writeToTerminal(FastaTool toolData){
         //Print actual sequences
         ArrayList<Sequence> sequenceList = toolData.getSequences();
+        int headColumnWidth = maxHeadLength(sequenceList)+4;
 
 
 
+        int indexCounter=1;
+        while(indexCounter<maximumLength(sequenceList)) {
 
+            for(int i=0;i<headColumnWidth;i++){
+                System.out.print(" ");
+            }
+            System.out.format(indexCounter + "%60s%n", "" + (indexCounter+59) );
+            for (Sequence seq: sequenceList) {
+                System.out.print(seq.getHead());
+                for(int whitespaces = 0; whitespaces < headColumnWidth-seq.getHead().length();whitespaces++) {
+                    System.out.print(" ");
+                }
+
+                for(int i = indexCounter; i <= indexCounter+60;i++){
+                    ArrayList<Nucleotide> nuc_seq = seq.getNucleo_sequence();
+                    if(i<nuc_seq.size()) {
+                        System.out.print(nuc_seq.get(i));
+                    }
+                }
+                System.out.println();
+            }
+            indexCounter+=60;
+            System.out.println();
+        }
 
         //Print additional stuff
         System.out.println("Number of sequences: "+ sequenceList.size());
@@ -93,6 +116,14 @@ public class CommandLine {
             }
         }
         return counter;
+    }
+
+    public static int maxHeadLength(ArrayList<Sequence> sequences){
+        int max=0;
+        for(Sequence seq: sequences){
+           max=Math.max(max,seq.getHead().length());
+        }
+        return max;
     }
 
 }

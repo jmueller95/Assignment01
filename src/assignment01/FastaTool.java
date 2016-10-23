@@ -46,8 +46,6 @@ public class FastaTool {
     }
 
     public static void main(String[] args) throws IOException{
-
-        System.out.println("Reading the Multi FastA-file...");
         // open reader to input file
         String infile=args[0];
         Reader r=new FileReader(infile);
